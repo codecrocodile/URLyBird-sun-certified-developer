@@ -1,0 +1,62 @@
+/* Overall Application Choices */
+Implemented as thin client so that it would be easier to change the GUI if 
+required at a later date.
+
+Used three tier architecture (presentation, service, data) for thin client 
+because to provide a separation of concerns. 
+
+Only one booking is to made at a time as there was no specification to say 
+that a user would book multiple rooms at the one time. This keeps it easier.
+
+I have presumed that the customer has forgot to specify that they need a way to 
+cancel a reservation when the customer requests this. I have added a menu item 
+to do this. It is assumed that the customer and the CSR knows the reservation
+number so this is used to cancel a reservation.
+
+I chosen to implement network layer with RMI as there is less chance if writing 
+code that will not work even though there is more of an overhead with register 
+look-ups i.e. I don't need to write my own transfer protocol.
+
+/* GUI Choices */
+Used LayoutUtil as it was the most flexible layout requiring the fewest line 
+of code required. Decided to write a builder using Builder design pattern to make 
+working with GridBagLayout easier. Also equalise button sizes as it looks better.
+
+/* Data Access Choices */
+Implemented the Data.java as a facade which delegates the work to two worker 
+classes.
+
+Implemented an adaptor for the Data.java class to that I could use the DTO 
+pattern effectively.
+
+Implemented a DBContants class so that if the database format changed this could
+be subclasses and provide new field lengths and such like and no changed would
+be required for the worker classes.
+
+/* Server Choices */
+
+I have not extended UnicastRemoteObject because I am following the "favour 
+composition over inheritance" best practice. Also I don't believe that my 
+service class should inherit RMI logic.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// just notes
+
+I think it will be ok to keep hard coded values of the db file
